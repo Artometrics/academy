@@ -177,8 +177,17 @@ html[data-theme="dark"] body:has(.academy-page) .site-footer {
   margin: 0.4rem 0;
 }
 
-.academy-guide .report-body h2 {
+.academy-guide .report-body h2,
+.academy-guide .guide-def,
+.academy-guide .guide-takeaways,
+.academy-guide .report-related,
+.academy-guide .academy-sources {
   scroll-margin-top: calc(var(--mast-height, 112px) + 16px);
+}
+
+.academy-questions .report-body h2 {
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  line-height: 1.15;
 }
 
 .academy-guide .report-body p {

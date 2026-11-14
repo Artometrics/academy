@@ -1,0 +1,82 @@
+---
+import Toc from "./Toc.astro";
+import { SOURCES_NOTE, guides, guidePath, questions, questionsPage, topicById } from "@/lib/academy.mjs";
+
+const related = questionsPage.related.map((slug) => {
+  const hit = guides.find((item) => item.slug === slug);
+  if (!hit) throw new Error(`Missing related guide ${slug}`);
+  return hit;
+});
+const toc = [
+  { id: "definition", label: "Definition" },
+  { id: "takeaways", label: "Key takeaways" },
+  ...questions.map((item) => ({ id: item.id, label: item.question })),
+  { id: "related", label: "Related guides" },
+  { id: "sources", label: "Sources" },
+];
+---
+
+<article class="academy-guide academy-questions">
+  <nav class="report-crumb" aria-label="Breadcrumb">
+    <a href="/">Academy</a>
+    <span aria-hidden="true"> / </span>
+    <a href="/questions">Questions</a>
+  </nav>
+  <div class="academy-guide__grid">
+    <div class="academy-guide__toc">
+      <Toc items={toc} label="In these questions" />
+    </div>
+    <header class="report-head academy-guide__head">
+      <p class="report-kicker">Questions</p>
+      <h1>{questionsPage.title}</h1>
+      <p class="report-dek">{questionsPage.dek}</p>
+      <p class="report-byline">Artometrics Academy · beginner questions · neutral answers</p>
+    </header>
+    <div class="academy-guide__body">
+      <section class="guide-def" id="definition" aria-labelledby="definition-title">
+        <h2 class="academy-label" id="definition-title">Definition</h2>
+        {questionsPage.definition.map((paragraph) => <p set:html={paragraph} />)}
+      </section>
+      <section class="guide-takeaways" id="takeaways" aria-labelledby="takeaways-title">
+        <h2 class="academy-label" id="takeaways-title">Key takeaways</h2>
+        <ul>
+          {questionsPage.takeaways.map((item) => <li set:html={item} />)}
+        </ul>
+      </section>
+      <div class="report-body">
+        {
+          questions.map((item) => (
+            <section aria-labelledby={item.id}>
+              <h2 id={item.id}>{item.question}</h2>
+              {item.paragraphs.map((paragraph) => <p set:html={paragraph} />)}
+            </section>
+          ))
+        }
+      </div>
+      <section class="report-related" id="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        {
+          related.map((item) => (
+            <a href={guidePath(item.slug)}>
+              <span class="academy-label">{topicById(item.topic)?.title}</span>
+              {item.title}
+            </a>
+          ))
+        }
+      </section>
+      <section class="academy-sources" id="sources" aria-labelledby="sources-title">
+        <h2 id="sources-title">Sources & further reading</h2>
+        <p class="academy-sources__note">{SOURCES_NOTE}</p>
+        <ul>
+          {
+            questionsPage.sources.map((source) => (
+              <li>
+                {source.title} <span>{source.detail}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </div>
+  </div>
+</article>
