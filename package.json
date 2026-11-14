@@ -1,0 +1,22 @@
+{
+  "name": "academy",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0 --port 4321",
+    "deploy": "firebase deploy --project academy-510519 --only hosting"
+  },
+  "dependencies": {
+    "astro": "^5.18.2"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3"
+  },
+  "description": "Artometrics Academy \u2014 art\u00d7science beginner guides"
+}
