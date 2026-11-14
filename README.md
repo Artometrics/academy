@@ -6,12 +6,13 @@ Astro 5 static export on the Artometrics magazine shell (same masthead, wordmark
 
 Pages:
 
-- `/` — mission, guide categories, featured guides, The Journey
+- `/` — mission, guide categories, featured guides, common questions, The Journey
 - `/guides` — every guide, by topic and A–Z
-- `/guides/art-science-intersection`, `/guides/color-theory-physically`, `/guides/composition`, `/guides/perspective-and-optics`, `/guides/light-shadow-and-the-eye`, `/guides/what-is-a-medium`, `/guides/golden-ratio`, `/guides/how-to-look-at-a-painting`, `/guides/what-is-artometrics`
-- `/journey` and three personal notes: `/journey/what-i-got-wrong`, `/journey/the-short-list`, `/journey/where-they-meet-for-me`
+- `/guides/art-science-intersection`, `/guides/what-is-an-art-scientist`, `/guides/color-theory-physically`, `/guides/how-the-eye-sees-color`, `/guides/why-complementary-colors-work`, `/guides/value-hue-saturation`, `/guides/pigment-and-light`, `/guides/sfumato-and-atmospheric-perspective`, `/guides/composition`, `/guides/why-compositions-feel-balanced`, `/guides/negative-space-and-gestalt`, `/guides/perspective-and-optics`, `/guides/how-perspective-geometry-works`, `/guides/camera-obscura`, `/guides/light-shadow-and-the-eye`, `/guides/what-is-a-medium`, `/guides/anatomy-for-artists`, `/guides/golden-ratio`, `/guides/faces-symmetry-and-beauty`, `/guides/how-to-look-at-a-painting`, `/guides/what-is-artometrics`
+- `/questions` — beginner questions, each pointed at a guide
+- `/journey` and five personal notes: `/journey/what-i-got-wrong`, `/journey/the-short-list`, `/journey/where-they-meet-for-me`, `/journey/the-color-wheel-i-retired`, `/journey/the-formula-i-wanted`
 
-Guides are neutral. Journey notes are first person and labeled as opinion.
+Guides and the questions page are neutral. Journey notes are first person and labeled as opinion.
 
 - Intended live domain: `academy.artometrics.com`
 - Firebase project / Hosting site: `artometrics-510519` / `academy-510519`

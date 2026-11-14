@@ -1,13 +1,15 @@
 ---
 import Base from "../layouts/Base.astro";
-import { essays, guides, topics, guidePath, journeyPath, topicById } from "@/lib/academy.mjs";
+import { essays, guides, questions, topics, guidePath, journeyPath, topicById } from "@/lib/academy.mjs";
 
 const featuredSlugs = [
   "art-science-intersection",
+  "what-is-an-art-scientist",
   "how-to-look-at-a-painting",
   "color-theory-physically",
   "golden-ratio",
 ];
+const featuredQuestions = questions.filter((item) => item.featured);
 const featured = featuredSlugs.map((slug) => {
   const guide = guides.find((item) => item.slug === slug);
   if (!guide) throw new Error(`Missing featured guide ${slug}`);
@@ -63,6 +65,25 @@ const featured = featuredSlugs.map((slug) => {
             <span class="teaser__kind">{topicById(guide.topic)?.title}</span>
             <h2>{guide.title}</h2>
             <p>{guide.dek}</p>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="section-head">
+      <h2>Common questions</h2>
+      <a href="/questions">All questions</a>
+    </div>
+    <p class="academy-note">
+      The beginner questions, in the same voice as the guides. Each answer stops at the page that carries the mechanism.
+    </p>
+    <div class="card-grid">
+      {
+        featuredQuestions.map((item) => (
+          <a class="teaser" href={`/questions#${item.id}`}>
+            <span class="teaser__kind">Question</span>
+            <h2>{item.question}</h2>
+            <p>{item.dek}</p>
           </a>
         ))
       }

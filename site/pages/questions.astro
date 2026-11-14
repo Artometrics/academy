@@ -1,0 +1,9 @@
+---
+import Base from "../layouts/Base.astro";
+import QuestionsArticle from "../components/QuestionsArticle.astro";
+import { questionsPage } from "@/lib/academy.mjs";
+---
+
+<Base title={questionsPage.title} description={questionsPage.dek} path="/questions">
+  <QuestionsArticle />
+</Base>
