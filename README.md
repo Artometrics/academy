@@ -5,7 +5,8 @@ Artometrics Academy — art×science beginner guides.
 This is a scaffold of the Artometrics visual shell (Astro 5 static export, same masthead, wordmark, typography, and color tokens as [artometrics.com](https://artometrics.com)). Full content will be added in later passes.
 
 - Intended live domain: `academy.artometrics.com`
-- Firebase project / Hosting site (intended): `academy-510519` / `academy-510519`
+- Firebase project / Hosting site: `artometrics-510519` / `academy-510519`
+- Note: a GCP project ID `academy-510519` is already taken globally and is not accessible to team@artometrics.com, so this site is a Hosting site in the main Artometrics project.
 - Default Hosting URL (once deployed): `https://academy-510519.web.app`
 - Indexing: **noindex**. Every page ships `<meta name="robots" content="noindex, nofollow">`, `firebase.json` sets `X-Robots-Tag: noindex, nofollow`, and `public/robots.txt` is `User-agent: *` / `Disallow: /`.
 
@@ -22,7 +23,7 @@ npm run build
 Deploy as `team@artometrics.com` with an explicit project flag:
 
 ```bash
-firebase deploy --project academy-510519 --only hosting
+firebase deploy --project artometrics-510519 --only hosting
 ```
 
 Do not attach this site to Betterment Health, kmcauliffe-rainfall, or Stratus. Do not upgrade the Firebase billing plan without asking.
