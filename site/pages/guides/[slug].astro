@@ -1,0 +1,18 @@
+---
+import Base from "../../layouts/Base.astro";
+import GuideArticle from "../../components/GuideArticle.astro";
+import { guides, guidePath } from "@/lib/academy.mjs";
+
+export function getStaticPaths() {
+  return guides.map((guide) => ({
+    params: { slug: guide.slug },
+    props: { guide },
+  }));
+}
+
+const { guide } = Astro.props;
+---
+
+<Base title={guide.title} description={guide.dek} path={guidePath(guide.slug)} type="article">
+  <GuideArticle guide={guide} />
+</Base>

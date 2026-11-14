@@ -1,0 +1,18 @@
+---
+import Base from "../../layouts/Base.astro";
+import JourneyArticle from "../../components/JourneyArticle.astro";
+import { essays, journeyPath } from "@/lib/academy.mjs";
+
+export function getStaticPaths() {
+  return essays.map((essay) => ({
+    params: { slug: essay.slug },
+    props: { essay },
+  }));
+}
+
+const { essay } = Astro.props;
+---
+
+<Base title={essay.title} description={essay.dek} path={journeyPath(essay.slug)} type="article">
+  <JourneyArticle essay={essay} />
+</Base>

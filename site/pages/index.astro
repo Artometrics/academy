@@ -1,43 +1,90 @@
 ---
 import Base from "../layouts/Base.astro";
+import { essays, guides, topics, guidePath, journeyPath, topicById } from "@/lib/academy.mjs";
+
+const featuredSlugs = [
+  "art-science-intersection",
+  "how-to-look-at-a-painting",
+  "color-theory-physically",
+  "golden-ratio",
+];
+const featured = featuredSlugs.map((slug) => {
+  const guide = guides.find((item) => item.slug === slug);
+  if (!guide) throw new Error(`Missing featured guide ${slug}`);
+  return guide;
+});
 ---
 
 <Base
   title="Artometrics Academy"
-  description="Beginner guides at the intersection of art and science — the things we've found, so you can get farther than we did."
+  description="Learn the art–science intersection. Here are the things I've found, so you can get farther than I did."
   path="/"
 >
-  <div class="wrap">
+  <div class="wrap academy-page">
     <header class="home-hero">
       <p class="product-kicker">Academy</p>
       <h1>Learn the intersection.</h1>
       <p class="lede">
-        Artometrics Academy is a set of beginner guides for people who want to be art scientists
-        — or science artists — and cannot spend a lifetime reading all of either field. These are
-        the ideas, methods, and journeys we'd hand you first.
+        Learn the art–science intersection. Here are the things I've found, so you can get farther than I did.
+      </p>
+      <p class="academy-note">
+        The guides are neutral: a definition, a mechanism, and the limit of both.
+        <a href="/journey">The Journey</a> is the personal strand, written in the first person and kept separate so an opinion never pretends to be a definition.
       </p>
     </header>
 
     <div class="section-head">
-      <h2>Guides</h2>
-      <p>Investopedia-style starters</p>
+      <h2>Categories</h2>
+      <a href="/guides">All guides</a>
     </div>
     <div class="card-grid">
-      <a class="teaser" href="/guides/what-is-artometrics">
-        <span class="teaser__kind">Guide</span>
-        <h2>What is Artometrics?</h2>
-        <p>A short definition of the practice, what it is not, and how to start reading the world as both art and data.</p>
-      </a>
-      <div class="teaser teaser--placeholder">
-        <span class="teaser__kind">Coming next</span>
-        <h2>Where art and science meet</h2>
-        <p>Placeholder for a guide on shared methods — observation, experiment, iteration, and form.</p>
-      </div>
-      <div class="teaser teaser--placeholder">
-        <span class="teaser__kind">Coming next</span>
-        <h2>A journey in art</h2>
-        <p>Placeholder for a first-person path: what was learned, what was wrong, and what to skip.</p>
-      </div>
+      {
+        topics.map((topic) => {
+          const count = guides.filter((guide) => guide.topic === topic.id).length;
+          return (
+            <a class="teaser" href={`/guides#${topic.id}`}>
+              <span class="teaser__kind">{count === 1 ? "1 guide" : `${count} guides`}</span>
+              <h2>{topic.title}</h2>
+              <p>{topic.dek}</p>
+            </a>
+          );
+        })
+      }
+    </div>
+
+    <div class="section-head">
+      <h2>Featured guides</h2>
+      <a href="/guides#alphabetical">Browse A–Z</a>
+    </div>
+    <div class="card-grid">
+      {
+        featured.map((guide) => (
+          <a class="teaser" href={guidePath(guide.slug)}>
+            <span class="teaser__kind">{topicById(guide.topic)?.title}</span>
+            <h2>{guide.title}</h2>
+            <p>{guide.dek}</p>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="section-head">
+      <h2>The Journey</h2>
+      <a href="/journey">All notes</a>
+    </div>
+    <p class="academy-note">
+      What I've learned, where I was wrong, and where art and science actually meet for me. These are opinions. The guides are the check.
+    </p>
+    <div class="card-grid">
+      {
+        essays.map((essay) => (
+          <a class="teaser" href={journeyPath(essay.slug)}>
+            <span class="teaser__kind">The Journey</span>
+            <h2>{essay.title}</h2>
+            <p>{essay.dek}</p>
+          </a>
+        ))
+      }
     </div>
   </div>
 </Base>

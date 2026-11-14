@@ -2,7 +2,16 @@
 
 Artometrics Academy — art×science beginner guides.
 
-This is a scaffold of the Artometrics visual shell (Astro 5 static export, same masthead, wordmark, typography, and color tokens as [artometrics.com](https://artometrics.com)). Full content will be added in later passes.
+Astro 5 static export on the Artometrics magazine shell (same masthead, wordmark, typography, and color tokens as [artometrics.com](https://artometrics.com)).
+
+Pages:
+
+- `/` — mission, guide categories, featured guides, The Journey
+- `/guides` — every guide, by topic and A–Z
+- `/guides/art-science-intersection`, `/guides/color-theory-physically`, `/guides/composition`, `/guides/perspective-and-optics`, `/guides/light-shadow-and-the-eye`, `/guides/what-is-a-medium`, `/guides/golden-ratio`, `/guides/how-to-look-at-a-painting`, `/guides/what-is-artometrics`
+- `/journey` and three personal notes: `/journey/what-i-got-wrong`, `/journey/the-short-list`, `/journey/where-they-meet-for-me`
+
+Guides are neutral. Journey notes are first person and labeled as opinion.
 
 - Intended live domain: `academy.artometrics.com`
 - Firebase project / Hosting site: `artometrics-510519` / `academy-510519`
