@@ -1,0 +1,37 @@
+---
+import Base from "../../layouts/Base.astro";
+import GuideRow from "../../components/GuideRow.astro";
+import { essays, journeyPath } from "@/lib/academy.mjs";
+---
+
+<Base
+  title="The Journey"
+  description="Personal notes from the founder of Artometrics: what I got wrong, the ideas I would hand you first, and where art and science meet for me."
+  path="/journey"
+>
+  <div class="wrap academy-page">
+    <header class="home-hero">
+      <p class="product-kicker">The Journey</p>
+      <h1>What I've learned.</h1>
+      <p class="lede">
+        These are first-person notes. They are opinion, including the places I was wrong. They are not guides, and they are not trying to be neutral.
+      </p>
+      <p class="academy-note">
+        If you want the mechanism without the memoir, start with the <a href="/guides">guides</a>.
+      </p>
+    </header>
+    <div class="section-head">
+      <h2>Notes</h2>
+    </div>
+    {
+      essays.map((essay) => (
+        <GuideRow
+          href={journeyPath(essay.slug)}
+          kicker="Personal note"
+          title={essay.title}
+          dek={essay.dek}
+        />
+      ))
+    }
+  </div>
+</Base>

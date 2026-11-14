@@ -1,0 +1,109 @@
+---
+import Toc from "./Toc.astro";
+import {
+  essays,
+  guides,
+  readingMinutes,
+  guidePath,
+  journeyPath,
+  topicById,
+} from "@/lib/academy.mjs";
+
+interface Section {
+  id: string;
+  heading: string;
+  paragraphs: string[];
+}
+
+interface Essay {
+  slug: string;
+  title: string;
+  dek: string;
+  note: string[];
+  sections: Section[];
+  relatedNotes: string[];
+  relatedGuides: string[];
+}
+
+interface Props {
+  essay: Essay;
+}
+
+const { essay } = Astro.props;
+const minutes = readingMinutes(essay);
+const notes = essay.relatedNotes.map((slug) => {
+  const hit = essays.find((item) => item.slug === slug);
+  if (!hit) throw new Error(`Missing related note ${slug}`);
+  return hit;
+});
+const relatedGuides = essay.relatedGuides.map((slug) => {
+  const hit = guides.find((item) => item.slug === slug);
+  if (!hit) throw new Error(`Missing related guide ${slug}`);
+  return hit;
+});
+const toc = [
+  { id: "note", label: "What kind of note this is" },
+  ...essay.sections.map((section) => ({ id: section.id, label: section.heading })),
+  { id: "related", label: "More of the Journey" },
+  { id: "guides-used", label: "Guides this note leans on" },
+];
+---
+
+<article class="academy-guide">
+  <nav class="report-crumb" aria-label="Breadcrumb">
+    <a href="/">Academy</a>
+    <span aria-hidden="true"> / </span>
+    <a href="/journey">The Journey</a>
+  </nav>
+  <div class="academy-guide__grid">
+    <div class="academy-guide__toc">
+      <Toc items={toc} label="In this note" />
+    </div>
+    <header class="report-head academy-guide__head">
+      <p class="report-kicker">The Journey</p>
+      <h1>{essay.title}</h1>
+      <p class="report-dek">{essay.dek}</p>
+      <p class="report-byline">
+        The founder · Artometrics Academy · {minutes} min read · personal note
+      </p>
+    </header>
+    <div class="academy-guide__body">
+      <section class="journey-note" id="note" aria-labelledby="note-title">
+        <h2 class="academy-label" id="note-title">Personal note, not a guide</h2>
+        {essay.note.map((paragraph) => <p set:html={paragraph} />)}
+      </section>
+      <div class="report-body">
+        {
+          essay.sections.map((section) => (
+            <section aria-labelledby={section.id}>
+              <h2 id={section.id}>{section.heading}</h2>
+              {section.paragraphs.map((paragraph) => <p set:html={paragraph} />)}
+            </section>
+          ))
+        }
+      </div>
+      <section class="report-related" id="related" aria-labelledby="related-title">
+        <h2 id="related-title">More of the Journey</h2>
+        {
+          notes.map((item) => (
+            <a href={journeyPath(item.slug)}>
+              <span class="academy-label">The Journey</span>
+              {item.title}
+            </a>
+          ))
+        }
+      </section>
+      <section class="report-related" id="guides-used" aria-labelledby="guides-used-title">
+        <h2 id="guides-used-title">Guides this note leans on</h2>
+        {
+          relatedGuides.map((item) => (
+            <a href={guidePath(item.slug)}>
+              <span class="academy-label">{topicById(item.topic)?.title}</span>
+              {item.title}
+            </a>
+          ))
+        }
+      </section>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,40 @@
+---
+interface Item {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  items: Item[];
+  label?: string;
+}
+
+const { items, label = "In this guide" } = Astro.props;
+---
+
+<div class="academy-toc">
+  <details class="academy-toc__collapse">
+    <summary>{label}</summary>
+    <ol>
+      {
+        items.map((item) => (
+          <li>
+            <a href={`#${item.id}`}>{item.label}</a>
+          </li>
+        ))
+      }
+    </ol>
+  </details>
+  <nav class="academy-toc__rail" aria-label={label}>
+    <p class="academy-toc__label">{label}</p>
+    <ol>
+      {
+        items.map((item) => (
+          <li>
+            <a href={`#${item.id}`}>{item.label}</a>
+          </li>
+        ))
+      }
+    </ol>
+  </nav>
+</div>

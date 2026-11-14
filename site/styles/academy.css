@@ -1,0 +1,451 @@
+/* Academy pages. Same tokens and type as the magazine shell. */
+
+.academy-page {
+  padding-bottom: 3rem;
+}
+
+.academy-page > .home-hero {
+  margin-bottom: 0.4rem;
+}
+
+.home-hero .lede a {
+  color: var(--blue-text);
+}
+
+.academy-note {
+  margin: 0.9rem 0 0;
+  max-width: 46rem;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+/* Day mode: headings that use --cream sit on cream paper. */
+html[data-theme="light"] .home-hero h1,
+html[data-theme="light"] .section-head h2,
+html[data-theme="light"] .section-head a,
+html[data-theme="light"] .guide-row strong,
+html[data-theme="light"] .alpha-group h3 {
+  color: #14110e;
+}
+
+html[data-theme="light"] .teaser,
+html[data-theme="light"] .guide-def,
+html[data-theme="light"] .guide-takeaways,
+html[data-theme="light"] .journey-note {
+  background: #fffdf8;
+  color: #14110e;
+}
+
+html[data-theme="light"] .teaser {
+  border-color: rgba(20, 17, 14, 0.28);
+}
+
+html[data-theme="light"] .teaser h2,
+html[data-theme="light"] .guide-def,
+html[data-theme="light"] .guide-def p,
+html[data-theme="light"] .guide-takeaways,
+html[data-theme="light"] .guide-takeaways li,
+html[data-theme="light"] .journey-note,
+html[data-theme="light"] .journey-note p {
+  color: #14110e;
+}
+
+html[data-theme="light"] .teaser p {
+  color: #3e362e;
+}
+
+@media (max-width: 719px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.section-head a {
+  color: var(--blue-text);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.section-head a:hover {
+  color: var(--cream);
+}
+
+html[data-theme="light"] .section-head a:hover {
+  color: #14110e;
+}
+
+/* ---------- Guide and essay ---------- */
+
+article.academy-guide {
+  width: min(62rem, calc(100% - 32px));
+  margin-inline: auto;
+  padding: 0 0 3rem;
+  min-width: 0;
+}
+
+.academy-guide ::selection {
+  background: #ff3d8a;
+  color: #000;
+}
+
+html[data-theme="dark"] body:has(.academy-guide),
+html[data-theme="dark"] body:has(.academy-page) {
+  --cream: #efe3c8;
+  --ink: #efe3c8;
+  --muted: #cfc3ad;
+  background: #000;
+}
+
+html[data-theme="dark"] body:has(.academy-guide) .mast,
+html[data-theme="dark"] body:has(.academy-guide) .site-footer,
+html[data-theme="dark"] body:has(.academy-page) .mast,
+html[data-theme="dark"] body:has(.academy-page) .site-footer {
+  background: #000;
+  border-color: rgba(239, 227, 200, 0.28);
+}
+
+.academy-guide__grid {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.academy-guide__main {
+  min-width: 0;
+  max-width: 42rem;
+}
+
+.academy-label {
+  margin: 0 0 0.55rem;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-text);
+}
+
+.guide-def,
+.guide-takeaways,
+.journey-note {
+  background: #000;
+  margin: 0 0 14px;
+  padding: 14px 16px 4px;
+}
+
+.guide-def {
+  border: 1px solid rgba(243, 234, 215, 0.72);
+}
+
+.guide-takeaways {
+  border: 1px solid var(--cream);
+  border-left: 4px solid var(--blue);
+  padding-bottom: 8px;
+}
+
+.journey-note {
+  border: 1px solid var(--pink);
+  border-left: 4px solid var(--pink);
+  padding-bottom: 14px;
+}
+
+.journey-note p {
+  margin: 0;
+}
+
+.guide-def p,
+.guide-takeaways li,
+.academy-guide .report-body p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.guide-takeaways ul {
+  margin: 0 0 0.35rem;
+  padding-left: 1.15rem;
+}
+
+.guide-takeaways li {
+  margin: 0.4rem 0;
+}
+
+.academy-guide .report-body h2 {
+  scroll-margin-top: calc(var(--mast-height, 112px) + 16px);
+}
+
+.academy-guide .report-body p {
+  margin: 0 0 1rem;
+}
+
+.academy-guide .report-body a {
+  color: var(--blue-text);
+}
+
+.academy-toc__rail {
+  display: none;
+}
+
+.academy-toc__collapse {
+  border: 1px solid var(--rule);
+  padding: 0 12px;
+  margin: 0 0 1.15rem;
+  background: transparent;
+}
+
+.academy-toc__collapse summary {
+  min-height: 44px;
+  padding: 10px 0;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.academy-toc ol {
+  margin: 0;
+  padding: 0 0 12px 1.15rem;
+}
+
+.academy-toc li {
+  margin: 0.15rem 0;
+}
+
+.academy-toc a {
+  color: var(--blue-text);
+  text-decoration: none;
+  display: inline-block;
+  padding: 5px 0;
+  line-height: 1.35;
+}
+
+.academy-toc a:hover {
+  color: var(--cream);
+}
+
+html[data-theme="light"] .academy-toc a:hover {
+  color: #14110e;
+}
+
+.academy-toc__label {
+  margin: 0 0 0.45rem;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--subtle);
+}
+
+@media (min-width: 900px) {
+  .academy-guide__grid {
+    display: grid;
+    grid-template-columns: 13.25rem minmax(0, 1fr);
+    column-gap: 2.25rem;
+    align-items: start;
+  }
+
+  .academy-guide__toc {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: stretch;
+    height: 100%;
+  }
+
+  .academy-guide__toc .academy-toc {
+    height: 100%;
+  }
+
+  .academy-guide__head {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .academy-guide__body {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .academy-toc__collapse {
+    display: none;
+  }
+
+  .academy-toc__rail {
+    display: block;
+    position: sticky;
+    top: calc(var(--mast-height, 125px) + 16px);
+    max-height: calc(100vh - var(--mast-height, 125px) - 32px);
+    overflow: auto;
+  }
+}
+
+.report-related a .academy-label {
+  display: block;
+  margin: 0 0 0.35rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pink-text);
+}
+
+.academy-sources {
+  margin-top: 1.6rem;
+  padding-top: 0.2rem;
+}
+
+.academy-sources h2 {
+  margin: 0 0 0.65rem;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--subtle);
+}
+
+.academy-sources__note {
+  margin: 0 0 0.7rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.academy-sources ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.academy-sources li {
+  margin: 0.4rem 0;
+}
+
+.academy-sources li span {
+  color: var(--muted);
+}
+
+/* ---------- Indexes ---------- */
+
+.guide-row {
+  display: block;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: inherit;
+  text-decoration: none;
+}
+
+.guide-row:hover {
+  color: inherit;
+}
+
+.guide-row:hover strong {
+  color: var(--blue-text);
+}
+
+html[data-theme="light"] .guide-row:hover strong {
+  color: #0047ff;
+}
+
+.guide-row strong {
+  display: block;
+  margin: 0.2rem 0 0.25rem;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--cream);
+  text-wrap: balance;
+}
+
+.guide-row p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.topic-block {
+  margin: 0 0 1.6rem;
+}
+
+.topic-block h3 {
+  margin: 0 0 0.25rem;
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  color: var(--cream);
+}
+
+html[data-theme="light"] .topic-block h3 {
+  color: #14110e;
+}
+
+.topic-block > p {
+  margin: 0 0 0.3rem;
+  color: var(--muted);
+}
+
+.alpha-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0.4rem 0 1rem;
+}
+
+.alpha-jump a {
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--rule);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+
+.alpha-jump a:hover {
+  border-color: var(--blue);
+  color: var(--blue-text);
+}
+
+.alpha-group {
+  margin: 0 0 0.6rem;
+}
+
+.alpha-group h3 {
+  margin: 0.8rem 0 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--pink-text);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.35rem;
+}
+
+.browse-links {
+  margin: 0.2rem 0 0.4rem;
+}
+
+html[data-theme="light"] .guide-def {
+  border-color: #14110e;
+}
+
+html[data-theme="light"] .guide-takeaways {
+  border-color: #0047ff;
+}
+
+html[data-theme="light"] .filters a[aria-current="true"] {
+  background: #14110e;
+  color: #f3ead7;
+}

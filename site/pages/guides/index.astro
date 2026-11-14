@@ -1,0 +1,100 @@
+---
+import Base from "../../layouts/Base.astro";
+import GuideRow from "../../components/GuideRow.astro";
+import { alphaKey, guides, guidePath, topics, topicById } from "@/lib/academy.mjs";
+
+const grouped = topics.map((topic) => ({
+  topic,
+  guides: guides.filter((guide) => guide.topic === topic.id),
+}));
+
+const alphabetical = [...guides].sort((a, b) =>
+  alphaKey(a.title).localeCompare(alphaKey(b.title), "en", { sensitivity: "base" }),
+);
+
+const letters = new Map();
+for (const guide of alphabetical) {
+  const letter = alphaKey(guide.title).charAt(0).toUpperCase();
+  const bucket = letters.get(letter) ?? [];
+  bucket.push(guide);
+  letters.set(letter, bucket);
+}
+---
+
+<Base
+  title="Guides"
+  description="Beginner guides to the art–science intersection, browsable by topic and from A to Z."
+  path="/guides"
+>
+  <div class="wrap academy-page">
+    <header class="home-hero">
+      <p class="product-kicker">Academy</p>
+      <h1>Guides</h1>
+      <p class="lede">
+        Neutral explanations. Each one defines a term, says how the mechanism works, and marks where the popular version overreaches.
+      </p>
+      <p class="academy-note">
+        For the personal strand — what the founder learned, and where — see <a href="/journey">The Journey</a>.
+      </p>
+    </header>
+
+    <nav class="filters browse-links" aria-label="Browse guides">
+      <a href="#by-topic">By topic</a>
+      <a href="#alphabetical">A–Z</a>
+      {topics.map((topic) => <a href={`#${topic.id}`}>{topic.title}</a>)}
+    </nav>
+
+    <section id="by-topic" aria-labelledby="by-topic-title">
+      <div class="section-head">
+        <h2 id="by-topic-title">By topic</h2>
+      </div>
+      {
+        grouped.map(({ topic, guides: items }) => (
+          <div class="topic-block" id={topic.id}>
+            <h3>{topic.title}</h3>
+            <p>{topic.dek}</p>
+            {items.map((guide) => (
+              <GuideRow
+                href={guidePath(guide.slug)}
+                kicker={topic.title}
+                title={guide.title}
+                dek={guide.dek}
+              />
+            ))}
+          </div>
+        ))
+      }
+    </section>
+
+    <section id="alphabetical" aria-labelledby="alphabetical-title">
+      <div class="section-head">
+        <h2 id="alphabetical-title">A–Z by subject</h2>
+      </div>
+      <p class="academy-note">
+        Sorted by the subject, so “What is composition?” files under C. The titles themselves are unchanged.
+      </p>
+      <nav class="alpha-jump" aria-label="Letters">
+        {
+          [...letters.keys()].map((letter) => (
+            <a href={`#letter-${letter.toLowerCase()}`}>{letter}</a>
+          ))
+        }
+      </nav>
+      {
+        [...letters.entries()].map(([letter, items]) => (
+          <div class="alpha-group">
+            <h3 id={`letter-${letter.toLowerCase()}`}>{letter}</h3>
+            {items.map((guide) => (
+              <GuideRow
+                href={guidePath(guide.slug)}
+                kicker={topicById(guide.topic)?.title ?? "Guide"}
+                title={guide.title}
+                dek={guide.dek}
+              />
+            ))}
+          </div>
+        ))
+      }
+    </section>
+  </div>
+</Base>

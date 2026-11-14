@@ -1,0 +1,16 @@
+---
+interface Props {
+  href: string;
+  kicker: string;
+  title: string;
+  dek: string;
+}
+
+const { href, kicker, title, dek } = Astro.props;
+---
+
+<a class="guide-row" href={href}>
+  <span class="academy-label">{kicker}</span>
+  <strong>{title}</strong>
+  <p>{dek}</p>
+</a>
